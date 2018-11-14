@@ -1,5 +1,7 @@
 import java.util.Random;
 
+// TODO : Ajouter la javadoc
+
 class Joueur {
 
 	private final int numeroDeJoeur;
