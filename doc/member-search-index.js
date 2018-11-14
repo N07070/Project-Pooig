@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"<Unnamed>","c":"Piece","l":"getValeur()"},{"p":"<Unnamed>","c":"Piece","l":"getX()"},{"p":"<Unnamed>","c":"Piece","l":"getY()"},{"p":"<Unnamed>","c":"Piece","l":"Piece(int, int, int)"},{"p":"<Unnamed>","c":"Piece","l":"setPosition(int, int)"}]

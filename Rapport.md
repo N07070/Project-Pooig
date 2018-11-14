@@ -20,7 +20,10 @@ On commence par avoir une vision aussi abstraite que possible du jeu, de façon 
 
 La table sur laquelle nous allons jouer va donc être une liste double, dont la taille se décidera au début du jeu. Elle permettra de déterminer la position d'une pièce au court du jeu, mais nécéssitera l'implémentation d'une fonctionnalité qui vérifiera que l'on ne pause pas une pièce en dehors du plateau.
 
-La pièce en elle-même devra être un objet contenant deux valeur - la valeur de gauche et celle de droite -, ainsi qu'une position 
+La pièce en elle-même sera un objet contenant une position et une valeur. Le domino sera lui constitué de deux pièces, avec en plus une orientation qui déterminera comment les deux pièces sont positionnées l'une par rapport à l'autre.  
+
+Le jeu se joue au tour par tour. Il convient donc de mettre en place une face de distribuer les differents tours aux joueurs. Il convient donc de réfléchir à la conception du joueur.
+
 
 ## Conclusion
 
