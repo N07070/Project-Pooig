@@ -1,37 +1,42 @@
-import java.util.Random;
+import java.util.*;
 
-// TODO : Ajouter la javadoc
+// TO DO : Ajouter la javadoc
 
 class Joueur {
 
-	private final int numeroDeJoeur;
-	private static int nbrJoueurs;
-	private int nbrDePoints;
-	private LinkedList<Domino> mainDuJoeur;
+	private final int idJoueur;
+	private static int nbJoueurs;
+	private int points;
+	private LinkedList<Domino> mainDuJoueur;
 
 	public Joueur(LinkedList<Domino> piocheDeDepart){
-		this.numeroDeJoeur = this.nbrJoueurs++;
-		this.nbrDePoints = 0;
-		this.mainDuJoeur = piocheDeDepart;
+		this.nbJoueurs ++;
+		this.idJoueur = this.nbJoueurs;
+		this.points = 0;
+		this.mainDuJoueur = piocheDeDepart;
 	}
 
-	public int getNbrDePoints(){
-		return this.nbrDePoints;
+	public int getPoints(){
+		return this.points;
+	}
+
+	public LinkedList<Domino> getMainDuJoueur(){
+		return this.mainDuJoueur;
 	}
 
 	public int getNombrePiecesRestantes(){
-		return this.mainDuJoeur.size();
+		return this.mainDuJoueur.size();
 	}
 
 	public int getDominoAuPif(){
-		return this.mainDuJoeur.get(Random.nextInt(this.mainDuJoeur.size()));
+		return this.mainDuJoueur.get(Random.nextInt(this.mainDuJoueur.size()));
 	}
 
-	public int getDominoNumero(int i){
-		return this.mainDuJoeur.get(i);
+	public Domino getDominoNumero(int i){
+		return this.mainDuJoueur.get(i);
 	}
 
-	public int getNumeroDeJoueur(){
-		return this.numeroDeJoeur;
+	public int getIdJoueur(){
+		return this.idJoueur;
 	}
 }
