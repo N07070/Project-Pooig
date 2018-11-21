@@ -1,6 +1,9 @@
 import java.util.*;
 
-// TO DO : Ajouter la javadoc
+/**
+* @param piocheDeDepart une LinkedList de Domino ( voir class Domino )
+*
+*/
 
 class Joueur {
 
@@ -16,26 +19,81 @@ class Joueur {
 		this.mainDuJoueur = piocheDeDepart;
 	}
 
+	/**
+	* @return un int contenant tout les points du joueurs ( son score)
+	*/
+
 	public int getPoints(){
 		return this.points;
 	}
+
+	/**
+	* @return une linked list avec la main courante du joueur
+	*/
 
 	public LinkedList<Domino> getMainDuJoueur(){
 		return this.mainDuJoueur;
 	}
 
+
+	/**
+	* @return le nombre de piece restantes
+	*/
+
 	public int getNombrePiecesRestantes(){
 		return this.mainDuJoueur.size();
 	}
 
-	public int getDominoAuPif(){
-		return this.mainDuJoueur.get(Random.nextInt(this.mainDuJoueur.size()));
+	/**
+	* @return un domino dans la main du joueur, et la supprime de sa main
+	*/
+
+	public Domino getDominoAuPif(){
+		Random numAlea = new Random();
+		int numAleaDomino = numAlea.nextInt(this.mainDuJoueur.size() + 1); // Parce que le n est exclusif
+
+		Domino dominoARetourner = this.mainDuJoueur.get(numAleaDomino);
+
+		// Enlève le domino qui est sorti de la pioche du joueur.
+		// TODO : est-ce que c'est la meilleur manière de faire ?
+		// On pourrait aussi marquer un domino comme jouer, et donc ne pas avoir
+		// à le supprimer ?
+		this.mainDuJoueur.remove(numAleaDomino);
+
+		return dominoARetourner;
 	}
 
-	public Domino getDominoNumero(int i){
-		return this.mainDuJoueur.get(i);
+	/**
+	* @return un domino spécifique.
+	* @exception IndexOutOfBoundsException si on essaye d'acceder à un domino qui n'existe pas.
+	*/
+
+	public Domino getDominoNumero(int i) throws IndexOutOfBoundsException {
+		if(i < 0 || i > this.mainDuJoueur.size() ){
+			throw new IndexOutOfBoundsException();
+		} else {
+			return this.mainDuJoueur.get(i);
+		}
 	}
 
+	/**
+	* @return Le dernier domino de la pioche.
+	* @exception NegativeArraySizeException si il ne reste plus de domino dans la pioche.
+	*/
+
+	public Domino getNextDomino() throws NegativeArraySizeException {
+		if (this.mainDuJoueur.size() == 0) {
+			throw new NegativeArraySizeException();
+		}
+		int tailleDeLaPioche = this.mainDuJoueur.size();
+		Domino piocheDuJoueur = this.mainDuJoueur.get(tailleDeLaPioche);
+		this.mainDuJoueur.remove(tailleDeLaPioche);
+		return piocheDuJoueur;
+	}
+
+	/**
+	* @return retourne le numero du joueur.
+	*/
 	public int getIdJoueur(){
 		return this.idJoueur;
 	}

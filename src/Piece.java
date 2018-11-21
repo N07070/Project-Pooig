@@ -2,7 +2,7 @@ public class Piece {
 
 	/**
 	* class Piece qui contient la valeur de la piece et sa position
-	* @author Nelson P
+	* @author Nelson P et Mehdi X
 	* @param valeur une valeur entre 0 et 6
 	* @param position une array contenant la position x en position 0 et y en position 1
 	*
@@ -21,7 +21,7 @@ public class Piece {
 		return this.position[0];
 	}
 
-	protected int setPosition(int x, int y){
+	protected void setPosition(int x, int y){
 		this.position[0] = x;
 		this.position[1] = y;
 	}

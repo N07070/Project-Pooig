@@ -1,4 +1,4 @@
-public class Domino extends Piece {
+public class Domino {
 
 	/**
 	* Domino : implementation du pion de jeu
