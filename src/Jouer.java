@@ -1,32 +1,40 @@
-import java.util.ArrayList;
-import java.util.Random;
+
+import java.util.*;
 
 public class Jouer {
 
 	private int nbJoueurs;
-	private ArrayList<Joueur> joueurListe;
+	private ArrayList<Joueur> joueurListe = new ArrayList<Joueur>();
 	private int tourCourant;
-    private int tourDuJoueurX;
-    private Plateau tableDeJeu;
+	private int tourDuJoueurX;
+	private Plateau tableDeJeu;
+	private ArrayList<Domino> lesDominos;
 
-	public Jouer(int nbJoueurs, int tailleDuPlateau){
-        this.nbJoueurs = nbJoueurs;
-        this.tableDeJeu = new Plateau(tailleDuPlateau);
 
-        ArrayList<Domino> lesDominos = genererLesDominos();
+	public Jouer(int tailleDuPlateau){
+		this.setNbJoueurs();
+		this.tableDeJeu = new Plateau(tailleDuPlateau);
+
+        lesDominos = genererLesDominos();
 
         // On init les joueurs
 		if (nbJoueurs > 0 && nbJoueurs <= 4) {
+			// En dehors du for
+			int nombreDeDominoParJoueurs = (int) lesDominos.size() / nbJoueurs;
 			for (int i = 0; i < nbJoueurs; i++) {
                 // On récupère une partie du total des dominos pour chaque joueurs
                 // TODO : optimiser cette partie
-                int nombreDeDominoParJoueurs = (int) lesDominos.size() / nbJoueurs;
-                ArrayList<Domino> dominosPourJoueur = new ArrayList<Domino>;
 
-                for (int j = 0 ; j <= nombreDeDominoParJoueurs ; j++ ) {
-                    Random numAlea = new Random(lesDominos.size());
-                    dominosPourJoueur.add(lesDominos.get(numAlea));
-                    lesDominos.remove(numAlea);
+                ArrayList<Domino> dominosPourJoueur = new ArrayList<Domino>();
+                for (int j = 0 ; j < nombreDeDominoParJoueurs ; j++ ) {
+							  //    Random numAlea = new Random(lesDominos.size());
+									int nombreAleatoire = (int)(Math.random()*((lesDominos.size())));
+                  dominosPourJoueur.add(lesDominos.get(nombreAleatoire));
+                  lesDominos.remove(nombreAleatoire);
+
+									// Only for test
+									System.out.println("le nombre de dominos restant "+lesDominos.size());
+									System.out.println("le nombre de dominos attribué "+dominosPourJoueur.size());
                 }
 
                 this.joueurListe.add(new Joueur(dominosPourJoueur));
@@ -36,12 +44,21 @@ public class Jouer {
         // Initialiser le tour courant
         this.tourCourant = 0;
 
+
         // On choisit un joueur au hasard pour commencer
-        this.tourDuJoueurX = new Random.nextInt(nbJoueurs);
+        // this.tourDuJoueurX = new Random.nextInt(nbJoueurs);
+				int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
+				this.tourDuJoueurX = nombreAleatoire;
     }
 
 	public ArrayList<Joueur> getJoueurListe(){
 		return this.joueurListe;
+	}
+
+	public void setNbJoueurs(){
+		System.out.println("Combien de joueurs êtes vous?");
+		Scanner sc = new Scanner(System.in);
+		this.nbJoueurs = sc.nextInt();
 	}
 
 	public int getTourCourant(){
@@ -77,7 +94,7 @@ public class Jouer {
     }
 
     public void placerUnDomino(Domino pieceDuJoueur, int[] position){
-        getTourDuJoueurX()
+        getTourDuJoueurX();
 
         /* Prendre en compte plusieurs choses :
             - Est-ce que y'a déjà des domino sur la table
