@@ -10,9 +10,9 @@ class Joueur {
 	private final int idJoueur;
 	private static int nbJoueurs;
 	private int points;
-	private LinkedList<Domino> mainDuJoueur;
+	private ArrayList<Domino> mainDuJoueur;
 
-	public Joueur(LinkedList<Domino> piocheDeDepart){
+	public Joueur(ArrayList<Domino> piocheDeDepart){
 		this.nbJoueurs ++;
 		this.idJoueur = this.nbJoueurs;
 		this.points = 0;
@@ -31,7 +31,7 @@ class Joueur {
 	* @return une linked list avec la main courante du joueur
 	*/
 
-	public LinkedList<Domino> getMainDuJoueur(){
+	public ArrayList<Domino> getMainDuJoueur(){
 		return this.mainDuJoueur;
 	}
 

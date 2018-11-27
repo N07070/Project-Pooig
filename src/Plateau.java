@@ -6,7 +6,7 @@ public class Plateau {
   private int taille;
 
   // le plateau contient une série de dominos.
-  private ArrayList <Domino> dominos;
+  private ArrayList<Domino> dominos;
 
   /* On créant le plateau, on fiche sa hauteur et sa largeur,
   et on crée une liste vide de dominos qu'on complétera au fur et à mesure de l'avancement du jeu. */
