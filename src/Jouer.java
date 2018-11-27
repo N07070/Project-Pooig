@@ -1,5 +1,7 @@
 public class Jouer {
 	Joueur joueurListe[];
+
+    // Tour qui est entrain d'être joué
 	int tourCourant;
 
 	public Jouer(int nbrJoueurs){
