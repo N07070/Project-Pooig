@@ -1,18 +1,25 @@
+import java.util.ArrayList;
 public class Jouer {
-	Joueur joueurListe[];
 
-    // Tour qui est entrain d'être joué
-	int tourCourant;
+	private int nbJoueurs;
+	private ArrayList<Joueur> joueurListe;;
+	private int tourCourant;
 
-	public Jouer(int nbrJoueurs){
+	public Jouer(int nbJoueurs){
 		// Creer le nombre de joueur
-		if (nbrJoueurs) {
-
-		}
-		for (int i = 0 ; i < nbrJoueurs ; ) {
+		if (nbJoueurs > 0 && nbJoueurs <= 4) {
+			for (int i = 0; i < nbJoueurs; i++) {
 
 		}
 		// Initialiser le tour courant
+	}
+
+	public ArrayList<Joueur> getJoueurListe(){
+		return this.joueurListe;
+	}
+
+	public int getTourCourant(){
+		return this.tourCourant;
 	}
 
 }
