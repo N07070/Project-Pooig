@@ -11,8 +11,8 @@ public class Jouer {
 
 	public Jouer(int nbJoueurs, int tailleDuPlateau){
         this.nbJoueurs = nbJoueurs;
-        this.tableDeJeu = new Plateau(tailleDuPlateau, tailleDuPlateau);
-        
+        this.tableDeJeu = new Plateau(tailleDuPlateau);
+
         ArrayList<Domino> lesDominos = genererLesDominos();
 
         // On init les joueurs
@@ -67,7 +67,7 @@ public class Jouer {
     public ArrayList<Domino> genererLesDominos(){
         lesDominos = new ArrayList<Domino>();
         for (int i = 0; i < 7 ; i++ ) {
-            for (int j = 0; j < 7 ; j++ ) {
+            for (int j = i; j < 7 ; j++ ) {
                 lesDominos.add(new Domino(i,j));
             }
         }
@@ -76,13 +76,13 @@ public class Jouer {
         return lesDominos;
     }
 
-    public void placerUnDomino(Domino pieceAJoueur, int[] position){
+    public void placerUnDomino(Domino pieceDuJoueur, int[] position){
         getTourDuJoueurX()
 
         /* Prendre en compte plusieurs choses :
             - Est-ce que y'a déjà des domino sur la table
                 - Si oui, il faut que le placement soit adjacent à un Domino
-            - Est-ce que on peut placer le domino
+            - Est-ce que on peut placer le domino à cette positin ( en dehors de la table ou pas ? )
         */
     }
 
