@@ -11,8 +11,8 @@ public class Jouer {
 	private ArrayList<Domino> lesDominos;
 
 
-	public Jouer(int tailleDuPlateau){
-		this.setNbJoueurs();
+	public Jouer(int tailleDuPlateau, int nbrJoueurs){
+		this.nbJoueurs = nbrJoueurs;
 		this.tableDeJeu = new Plateau(tailleDuPlateau);
 
         lesDominos = genererLesDominos();
@@ -27,14 +27,14 @@ public class Jouer {
 
                 ArrayList<Domino> dominosPourJoueur = new ArrayList<Domino>();
                 for (int j = 0 ; j < nombreDeDominoParJoueurs ; j++ ) {
-							  //    Random numAlea = new Random(lesDominos.size());
-									int nombreAleatoire = (int)(Math.random()*((lesDominos.size())));
-                  dominosPourJoueur.add(lesDominos.get(nombreAleatoire));
-                  lesDominos.remove(nombreAleatoire);
+					//   Random numAlea = new Random(lesDominos.size());
+					int nombreAleatoire = (int)(Math.random()*((lesDominos.size())));
+                  	dominosPourJoueur.add(lesDominos.get(nombreAleatoire));
+                  	lesDominos.remove(nombreAleatoire);
 
-									// Only for test
-									System.out.println("le nombre de dominos restant "+lesDominos.size());
-									System.out.println("le nombre de dominos attribué "+dominosPourJoueur.size());
+					// Only for test
+					System.out.println("le nombre de dominos restant "+lesDominos.size());
+					System.out.println("le nombre de dominos attribué "+dominosPourJoueur.size());
                 }
 
                 this.joueurListe.add(new Joueur(dominosPourJoueur));
@@ -44,21 +44,18 @@ public class Jouer {
         // Initialiser le tour courant
         this.tourCourant = 0;
 
-
         // On choisit un joueur au hasard pour commencer
         // this.tourDuJoueurX = new Random.nextInt(nbJoueurs);
-				int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
-				this.tourDuJoueurX = nombreAleatoire;
+		int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
+		this.tourDuJoueurX = nombreAleatoire;
     }
 
 	public ArrayList<Joueur> getJoueurListe(){
 		return this.joueurListe;
 	}
 
-	public void setNbJoueurs(){
-		System.out.println("Combien de joueurs êtes vous?");
-		Scanner sc = new Scanner(System.in);
-		this.nbJoueurs = sc.nextInt();
+	public void setNbJoueurs(int nbrJoueurs){
+		this.nbJoueurs = nbrJoueurs;
 	}
 
 	public int getTourCourant(){
@@ -68,6 +65,10 @@ public class Jouer {
     public int getTourDuJoueurX(){
         return this.tourDuJoueurX;
     }
+
+	public Plateau getPlateau(){
+		return this.tableDeJeu;
+	}
 
     public void passerAuProchainTour(){
         // Les joueurs sont de 0 à X,
