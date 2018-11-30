@@ -1,7 +1,5 @@
 class Main {
-
-public static void main(String[] args) {
-  Jouer domino = new Jouer(20);
-}
-
+	public static void main(String[] args) {
+		CommandLineInterface j1 = new CommandLineInterface();
+	}
 }
