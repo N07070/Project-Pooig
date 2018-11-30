@@ -31,7 +31,6 @@ public class Jouer {
 									int nombreAleatoire = (int)(Math.random()*((lesDominos.size())));
                   dominosPourJoueur.add(lesDominos.get(nombreAleatoire));
                   lesDominos.remove(nombreAleatoire);
-
 									// Only for test
 									System.out.println("le nombre de dominos restant "+lesDominos.size());
 									System.out.println("le nombre de dominos attribué "+dominosPourJoueur.size());
