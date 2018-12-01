@@ -59,10 +59,10 @@ public class CommandLineInterface {
 
 	public void poserUnDomino(){
 
+		System.out.println("Merci d'avoir joué !");
 	}
 
 	public void quitterLeJeu(){
-		System.out.println("Merci d'avoir joueur !");
 		this.continueLeJeu = false;
 	}
 
