@@ -33,6 +33,13 @@ public class Domino {
 		return this.piece2.getValeur();
 	}
 
+	// Vérifie que la piece jouée est compatible.
+	public boolean estCompatible (Domino dom){
+		if(this.piece2 == this.piece1){
+			return true;
+		} else return false;
+	}
+
 	public int[][] getPosition(){
 		int[][] positionDomino = new int[2][2];
 		positionDomino[0][0] = this.piece1.getX();
