@@ -8,6 +8,7 @@ public class CommandLineInterface {
 	public CommandLineInterface(){
 		Scanner scan = new Scanner(System.in);
 
+		// On récupère les réglages pour la partie
 		commencerLeJeu(scan);
 		scan.reset();
 

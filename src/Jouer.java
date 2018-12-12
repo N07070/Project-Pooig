@@ -82,7 +82,7 @@ public class Jouer {
     }
 
     // On creer les 28 dominos du jeu
-    public ArrayList<Domino> genererLesDominos(){
+    public ArrayList<? extends Domino> genererLesDominos(){
         lesDominos = new ArrayList<Domino>();
         for (int i = 0; i < 7 ; i++ ) {
             for (int j = i; j < 7 ; j++ ) {
