@@ -7,6 +7,11 @@ public class CommandLineInterface {
 
 	public CommandLineInterface(){
 		Scanner scan = new Scanner(System.in);
+<<<<<<< HEAD
+=======
+
+		// On récupère les réglages pour la partie
+>>>>>>> 4c99d689a876afb1770c8d38b5860025f1fc68bf
 		commencerLeJeu(scan);
 
 		while (continueLeJeu) {

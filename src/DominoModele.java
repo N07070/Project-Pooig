@@ -1,0 +1,6 @@
+class DominoModele {
+
+	public DominoModele(){
+
+	}
+}
