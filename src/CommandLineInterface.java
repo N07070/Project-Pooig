@@ -20,6 +20,9 @@ public class CommandLineInterface {
 						break;
 					case "aide":
 						break;
+					case "joueur":
+						jouer();
+						break;
 					default:
 						break;
 				}
@@ -29,7 +32,7 @@ public class CommandLineInterface {
 
 	public boolean verifierEntreeUtilisateur(String entreeUtilisateur){
 		if (entreeUtilisateur.length() < 1){
-			System.out.println("Veuillez entrer du texte.");
+			aide();
 			return false;
 		} else {
 			return true;
@@ -39,26 +42,25 @@ public class CommandLineInterface {
 	public void commencerLeJeu(Scanner scan){
 		System.out.println(" ====== DOMINO - Pretty Oblivious Overshot Irritant Game EDITION ======");
 
-		int tailleDuPlateau;
-		int nbrJoueurs;
+		int tailleDuPlateau = 0;
+		int nbrJoueurs = 0;
 
-		do {
-			System.out.println("\n>> Le plateau doit faire quel taille ? ( Entre 10 et 100 )");
+		while (tailleDuPlateau < 10 && tailleDuPlateau > 100) {
+			System.out.println(">> Le plateau doit faire quel taille ? ( Entre 10 et 100 )");
 			System.out.print(">> ");
 			tailleDuPlateau = scan.nextInt();
-		} while (tailleDuPlateau < 10 && tailleDuPlateau > 100);
+		}
 
-		do {
-			System.out.println("\n>> Combien de joueurs ? ( 2 à 4)");
+		while (nbrJoueurs < 2 && nbrJoueurs > 4) {
+			System.out.println(">> Combien de joueurs ? ( 2 à 4)");
 			System.out.print(">> ");
 			nbrJoueurs = scan.nextInt();
-		} while (nbrJoueurs < 2 && nbrJoueurs > 4);
+		}
 
 		this.jeuEnCours = new Jouer(tailleDuPlateau, nbrJoueurs);
 	}
 
-	public void poserUnDomino(){
-
+	public void jouer(){
 		System.out.println("Merci d'avoir joué !");
 	}
 
@@ -67,9 +69,9 @@ public class CommandLineInterface {
 	}
 
 	public void aide(){
-		System.out.println("quitter - Quitte le jeu.");
+		System.out.println("quitter - quitte le jeu");
 		System.out.println("aide - affiche cette aide");
-		System.out.println("");
+		System.out.println("jouer - commencer à jouer");
 	}
 
 	public void afficherLePlateau(){
