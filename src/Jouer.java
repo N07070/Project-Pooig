@@ -34,7 +34,7 @@ public class Jouer {
 
 					// Only for test
 					System.out.println("le nombre de dominos restant "+lesDominos.size());
-					System.out.println("le nombre de dominos attribué "+dominosPourJoueur.size());
+					System.out.println("le nombre de dominos attribué pour joueur " + i + " "+dominosPourJoueur.size());
                 }
 
                 this.joueurListe.add(new Joueur(dominosPourJoueur));
