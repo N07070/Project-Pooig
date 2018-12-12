@@ -105,14 +105,14 @@ public ArrayList<Domino> genererLesDominos(){
 return lesDominos;
 }
 
-	public void placerUnDomino(Domino pieceDuJoueur, int[] position){
-    getTourDuJoueurX();
+public void placerUnDomino(Domino pieceDuJoueur, int[] position){
+  getTourDuJoueurX();
+	this.tableDeJeu.addDomino(pieceDuJoueur);
 
-	  /* Prendre en compte plusieurs choses :
-            - Est-ce que y'a déjà des domino sur la table
-                - Si oui, il faut que le placement soit adjacent à un Domino
-            - Est-ce que on peut placer le domino à cette positin ( en dehors de la table ou pas ? )
-        */
-    }
-
+	/* Prendre en compte plusieurs choses :
+  - Est-ce que y'a déjà des domino sur la table
+  - Si oui, il faut que le placement soit adjacent à un Domino
+  - Est-ce que on peut placer le domino à cette positin ( en dehors de la table ou pas ? )
+  */
+}
 }

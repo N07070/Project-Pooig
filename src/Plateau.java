@@ -48,6 +48,7 @@ public class Plateau {
     return false;
   }
 
+  // Cette méthode ajoute le domino joué sur le plateau
   public void addDomino(Domino domJoue){
     if(positionEstBonne(domJoue)){
       dominos.add(domJoue);
@@ -57,15 +58,22 @@ public class Plateau {
   /**
   * @return la liste de tous les dominos joués.
   */
-
   public ArrayList <Domino> getDominos() {
     return this.dominos;
   }
 
   /**
+  * @return si le domino est déja joué
+  */
+  public boolean dominoEstSurLePlateau(Domino dom){
+    if(dominos.contains(dom)){
+      return true;
+    } else return false;
+  }
+
+  /**
   * @return le nombre de dominos dèja joués.
   */
-
   public int nbDominos(){
     return this.dominos.size();
   }

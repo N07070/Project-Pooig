@@ -25,12 +25,32 @@ public class Domino {
 		this.orientation = 0;
 	}
 
+	/**
+	* @return valeur premier coté du domino
+	*/
 	public int getValeurPremierCote(){
 		return this.piece1.getValeur();
 	}
 
+	/**
+	* @return valeur deuxième coté du domino
+	*/
 	public int getValeurDeuxiemeCote(){
 		return this.piece2.getValeur();
+	}
+
+	/**
+	* @return valeur totale du domino
+	*/
+	public int getValeurTotale(){
+		return getValeurPremierCote()+getValeurDeuxiemeCote();
+	}
+
+	/**
+	* @return si le domino est un double (mêmes côtès)
+	*/
+	public boolean estDouble(){
+		return this.piece1.getValeur() == this.piece2.getValeur();
 	}
 
 	/**
@@ -42,6 +62,9 @@ public class Domino {
 		} else return false;
 	}
 
+	/**
+	* @return la position du domino sur le plateau en tableau de tableau d'entiers
+	*/
 	public int[][] getPosition(){
 		int[][] positionDomino = new int[2][2];
 		positionDomino[0][0] = this.piece1.getX();
