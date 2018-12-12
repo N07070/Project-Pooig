@@ -1,11 +1,13 @@
 import java.util.*;
 
 public class Plateau {
-
-  // La taille du plateau est composé d'une hauteur, et d'un longueur.
+  /**
+  * Classe Plateau : Surface de jeu
+  * @author Mehdi
+  * @param taille la taille du plateau est composé d'une hauteur, et d'un longueur.
+  * @param dominos Le plateau contient une série de dominos (les joués)
+  */
   private int taille;
-
-  // le plateau contient une série de dominos.
   private ArrayList<Domino> dominos;
 
   /* On créant le plateau, on fiche sa hauteur et sa largeur,
@@ -15,11 +17,18 @@ public class Plateau {
     this.dominos = new ArrayList <Domino>();
   }
 
+  /**
+  * @return taille du Plateau
+  */
+
   public int getTaille(){
     return this.taille;
   }
 
-  // Détermine si le plateau est vide ou pas.
+  /**
+  * @return Si le plateau est vide ou pas
+  */
+
   public boolean isEmpty(){
     return this.dominos.isEmpty();
   }
@@ -45,13 +54,19 @@ public class Plateau {
     }
   }
 
-  // Retourne la liste de tous les dominos joués.
+  /**
+  * @return la liste de tous les dominos joués.
+  */
+
   public ArrayList <Domino> getDominos() {
     return this.dominos;
   }
 
+  /**
+  * @return le nombre de dominos dèja joués.
+  */
+
   public int nbDominos(){
     return this.dominos.size();
   }
-  // Donne le nombre de dominos dèja joués.
 }

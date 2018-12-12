@@ -102,23 +102,8 @@ public ArrayList<Domino> genererLesDominos(){
 * @return les dominos
 */
 
-<<<<<<< HEAD
 return lesDominos;
 }
-=======
-    // On creer les 28 dominos du jeu
-    public ArrayList<? extends Domino> genererLesDominos(){
-        lesDominos = new ArrayList<Domino>();
-        for (int i = 0; i < 7 ; i++ ) {
-            for (int j = i; j < 7 ; j++ ) {
-                lesDominos.add(new Domino(i,j));
-            }
-        }
-
-        // Rends les domino !!!
-        return lesDominos;
-    }
->>>>>>> 4c99d689a876afb1770c8d38b5860025f1fc68bf
 
 	public void placerUnDomino(Domino pieceDuJoueur, int[] position){
     getTourDuJoueurX();

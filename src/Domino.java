@@ -33,7 +33,9 @@ public class Domino {
 		return this.piece2.getValeur();
 	}
 
-	// Vérifie que la piece jouée est compatible.
+	/**
+	* @return si la pièce à poser est compatible avec la pièce déja sur le plateau
+	*/
 	public boolean estCompatible (Domino dom){
 		if(this.piece2 == this.piece1){
 			return true;
