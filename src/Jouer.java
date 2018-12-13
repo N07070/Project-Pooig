@@ -1,6 +1,6 @@
 
-import java.util.*;
 
+import java.util.*;
 public class Jouer {
 
 	/**
@@ -96,23 +96,15 @@ public ArrayList<Domino> genererLesDominos(){
       lesDominos.add(new Domino(i,j));
 		}
 	}
-
-/**
-* Retourne le pack de dominos
-* @return les dominos
-*/
-
-return lesDominos;
+	/**
+	* Retourne le pack de dominos
+	* @return les dominos
+	*/
+	return lesDominos;
 }
 
 public void placerUnDomino(Domino pieceDuJoueur, int[] position){
   getTourDuJoueurX();
 	this.tableDeJeu.addDomino(pieceDuJoueur);
-
-	/* Prendre en compte plusieurs choses :
-  - Est-ce que y'a déjà des domino sur la table
-  - Si oui, il faut que le placement soit adjacent à un Domino
-  - Est-ce que on peut placer le domino à cette positin ( en dehors de la table ou pas ? )
-  */
 }
 }
