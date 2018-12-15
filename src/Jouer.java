@@ -103,7 +103,7 @@ public ArrayList<Domino> genererLesDominos(){
 	return lesDominos;
 }
 
-public void placerUnDomino(Domino pieceDuJoueur, int[] position){
+public void placerUnDomino(Domino pieceDuJoueur){
   getTourDuJoueurX();
 	this.tableDeJeu.addDomino(pieceDuJoueur);
 }

@@ -19,6 +19,10 @@ class Joueur {
 		this.mainDuJoueur = piocheDeDepart;
 	}
 
+	public static int getNbJoueurs(){
+		return nbJoueurs;
+	}
+
 	/**
 	* @return un int contenant tout les points du joueurs ( son score)
 	*/
@@ -61,6 +65,14 @@ class Joueur {
 		this.mainDuJoueur.remove(numAleaDomino);
 
 		return dominoARetourner;
+	}
+
+	// Methode qui compte le nombre de point de la main d'un joueur.
+
+	public void compterLesPoints(){
+		for(int i=0; i<this.mainDuJoueur.size(); i++){
+			this.points += this.mainDuJoueur.get(i).getValeurTotale();
+		}
 	}
 
 	/**
