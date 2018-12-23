@@ -1,4 +1,4 @@
-class DominoModele {
+public class DominoModele {
 
 	public DominoModele(){
 

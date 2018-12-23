@@ -35,24 +35,24 @@ public class Jouer {
 			int nombreDeDominoParJoueurs = (int) lesDominos.size() / nbJoueurs;
 			for (int i = 0; i < nbJoueurs; i++) {
 				// On récupère une partie du total des dominos pour chaque joueurs
-        ArrayList<Domino> dominosPourJoueur = new ArrayList<Domino>();
-        for (int j = 0 ; j < nombreDeDominoParJoueurs ; j++ ) {
-				int nombreAleatoire = (int)(Math.random()*((lesDominos.size())));
-        dominosPourJoueur.add(lesDominos.get(nombreAleatoire));
-        lesDominos.remove(nombreAleatoire);
+		        ArrayList<Domino> dominosPourJoueur = new ArrayList<Domino>();
+		        for (int j = 0 ; j < nombreDeDominoParJoueurs ; j++ ) {
+					int nombreAleatoire = (int)(Math.random()*((lesDominos.size())));
+			        dominosPourJoueur.add(lesDominos.get(nombreAleatoire));
+			        lesDominos.remove(nombreAleatoire);
 
-				// Only for test
-				System.out.println("le nombre de dominos restant "+lesDominos.size());
-				System.out.println("le nombre de dominos attribué pour joueur " + i + " "+dominosPourJoueur.size());
+					// Only for test
+					System.out.println("le nombre de dominos restant "+lesDominos.size());
+					System.out.println("le nombre de dominos attribué pour joueur " + i + " "+dominosPourJoueur.size());
 			}
 
-      this.joueurListe.add(new Joueur(dominosPourJoueur));
+      		this.joueurListe.add(new Joueur(dominosPourJoueur));
 		}
 	}
 	// Initialiser le tour courant
-  this.tourCourant = 0;
+	this.tourCourant = 0;
 
-  // On choisit un joueur au hasard pour commencer
+	// On choisit un joueur au hasard pour commencer
 	int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
 	this.tourDuJoueurX = nombreAleatoire;
 }
@@ -106,7 +106,7 @@ return lesDominos;
 }
 
 public void placerUnDomino(Domino pieceDuJoueur, int[] position){
-  getTourDuJoueurX();
+  	getTourDuJoueurX();
 	this.tableDeJeu.addDomino(pieceDuJoueur);
 
 	/* Prendre en compte plusieurs choses :
