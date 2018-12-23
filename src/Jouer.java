@@ -1,6 +1,6 @@
 
-import java.util.*;
 
+import java.util.*;
 public class Jouer {
 
 	/**
@@ -55,64 +55,56 @@ public class Jouer {
 	// On choisit un joueur au hasard pour commencer
 	int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
 	this.tourDuJoueurX = nombreAleatoire;
-}
-
-public ArrayList<Joueur> getJoueurListe(){
-	return this.joueurListe;
-}
-
-public void setNbJoueurs(int nbrJoueurs){
-	this.nbJoueurs = nbrJoueurs;
-}
-
-public int getTourCourant(){
-	return this.tourCourant;
-}
-
-public int getTourDuJoueurX(){
-  return this.tourDuJoueurX;
-}
-
-public Plateau getPlateau(){
-	return this.tableDeJeu;
-}
-
-public void passerAuProchainTour(){
-  // Les joueurs sont de 0 à X,
-  // mais il y aura X + 1 joueur vu que 0 est une valeur.
-  // +Basic 101 CS stuff dumbass+
-  if (this.tourDuJoueurX == nbJoueurs - 1) {
-		this.tourDuJoueurX = 0;
-  } else {
-    this.tourDuJoueurX++;
-  }
-}
-
-// On crée les 28 dominos du jeu
-public ArrayList<Domino> genererLesDominos(){
-	lesDominos = new ArrayList<Domino>();
-  for (int i = 0; i < 7 ; i++ ) {
-    for (int j = i; j < 7 ; j++ ) {
-      lesDominos.add(new Domino(i,j));
-		}
 	}
 
-/**
-* Retourne le pack de dominos
-* @return les dominos
-*/
+	public ArrayList<Joueur> getJoueurListe(){
+		return this.joueurListe;
+	}
 
-return lesDominos;
-}
+	public void setNbJoueurs(int nbrJoueurs){
+		this.nbJoueurs = nbrJoueurs;
+	}
 
-public void placerUnDomino(Domino pieceDuJoueur, int[] position){
-  	getTourDuJoueurX();
-	this.tableDeJeu.addDomino(pieceDuJoueur);
+	public int getTourCourant(){
+		return this.tourCourant;
+	}
 
-	/* Prendre en compte plusieurs choses :
-  - Est-ce que y'a déjà des domino sur la table
-  - Si oui, il faut que le placement soit adjacent à un Domino
-  - Est-ce que on peut placer le domino à cette positin ( en dehors de la table ou pas ? )
-  */
-}
+	public int getTourDuJoueurX(){
+	  return this.tourDuJoueurX;
+	}
+
+	public Plateau getPlateau(){
+		return this.tableDeJeu;
+	}
+
+	public void passerAuProchainTour(){
+	  // Les joueurs sont de 0 à X,
+	  // mais il y aura X + 1 joueur vu que 0 est une valeur.
+	  // +Basic 101 CS stuff dumbass+
+	  if (this.tourDuJoueurX == nbJoueurs - 1) {
+			this.tourDuJoueurX = 0;
+	  } else {
+	    this.tourDuJoueurX++;
+	  }
+	}
+
+	// On crée les 28 dominos du jeu
+	public ArrayList<Domino> genererLesDominos(){
+		lesDominos = new ArrayList<Domino>();
+	  for (int i = 0; i < 7 ; i++ ) {
+	    for (int j = i; j < 7 ; j++ ) {
+	      lesDominos.add(new Domino(i,j));
+			}
+		}
+		/**
+		* Retourne le pack de dominos
+		* @return les dominos
+		*/
+		return lesDominos;
+	}
+
+	public void placerUnDomino(Domino pieceDuJoueur, int[] position){
+	  	getTourDuJoueurX();
+		this.tableDeJeu.addDomino(pieceDuJoueur);
+	}
 }
