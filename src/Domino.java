@@ -56,6 +56,8 @@ public class Domino {
 	/**
 	* @return si la pièce à poser est compatible avec la pièce déja sur le plateau
 	*/
+
+	// WTF ?
 	public boolean estCompatible (Domino dom){
 		if(this.piece2 == this.piece1){
 			return true;

@@ -61,7 +61,27 @@ public class CommandLineInterface {
 	}
 
 	public void jouer(){
-		System.out.println("Merci d'avoir joué !");
+		// Si il joueur n'a plus de Domino, on arrête le jeu.
+		for ( Joueur j : jeuEnCours.getJoueurListe() ) {
+			if (j.getMainDuJoueur().size() == 0) {
+				// Fin du jeu.
+				finDuJeu();
+			}
+		}
+
+		// Récuperer le tour du joueur courant
+		Joueur joueurCourant = jeuEnCours.getJoueurX(jeuEnCours.getTourDuJoueurX());
+		// Faire jouer le joueur
+		System.out.println(">> C'est au tour du joueur " + joueurCourant.getIdJoueur());
+		// Montrer le plateau
+		afficherLePlateau();
+		// Montrer au joueur ses dominos
+		afficherLaMainDuJoueur(joueurCourant);
+		// Demander au joueur d'un placer un
+		// joueurCourant.placerUnDomino();
+		// On passe au prochain tour
+		jeuEnCours.passerAuProchainTour();
+
 	}
 
 	public void quitterLeJeu(){
@@ -74,7 +94,26 @@ public class CommandLineInterface {
 		System.out.println("jouer - commencer à jouer");
 	}
 
+	public void finDuJeu(){
+		System.out.println("Merci d'avoir joué !");
+	}
+
+	public void afficherLaMainDuJoueur(Joueur j){
+		for(Domino d : j.getMainDuJoueur()){
+			System.out.print("["+ d.getValeurPremierCote() +"|"+ d.getValeurDeuxiemeCote() +"], ");
+		}
+	}
+
 	public void afficherLePlateau(){
-		this.jeuEnCours.getPlateau().getTaille();
+		if (this.jeuEnCours.getPlateau().isEmpty()){
+			for (int i = 0; i < this.jeuEnCours.getPlateau().getTaille(); i++ ) {
+				for (int j = 0 ; j < this.jeuEnCours.getPlateau().getTaille() ; j ++  ) {
+					// Bordure du plateau
+					if (i == 0 || i == this.jeuEnCours.getPlateau().getTaille()  - 1) {
+						System.out.println("bordure");
+					}
+				}
+			}
+		}
 	}
 }

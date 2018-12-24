@@ -44,21 +44,29 @@ public class Jouer {
 					// Only for test
 					System.out.println("le nombre de dominos restant "+lesDominos.size());
 					System.out.println("le nombre de dominos attribué pour joueur " + i + " "+dominosPourJoueur.size());
-			}
+				}
 
       		this.joueurListe.add(new Joueur(dominosPourJoueur));
+			}
 		}
-	}
-	// Initialiser le tour courant
-	this.tourCourant = 0;
+		// Initialiser le tour courant
+		this.tourCourant = 0;
 
-	// On choisit un joueur au hasard pour commencer
-	int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
-	this.tourDuJoueurX = nombreAleatoire;
+		// On choisit un joueur au hasard pour commencer
+		int nombreAleatoire = (int)(Math.random()*((nbJoueurs)));
+		this.tourDuJoueurX = nombreAleatoire;
 	}
 
 	public ArrayList<Joueur> getJoueurListe(){
 		return this.joueurListe;
+	}
+
+	public Joueur getJoueurX(int x) throws IndexOutOfBoundsException {
+		try {
+			return this.joueurListe.get(x);
+		} catch(IndexOutOfBoundsException e) {
+			throw e;
+		}
 	}
 
 	public void setNbJoueurs(int nbrJoueurs){
