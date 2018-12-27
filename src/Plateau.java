@@ -34,7 +34,15 @@ public class Plateau {
 	}
 
 	// Fonction qui vérifie que le domino est bien dans le plateau.
-	public boolean positionEstBonne(Domino d){
+	public boolean positionEstBonne(Domino d, int[] pos, int orientation){
+	// Pour rappel : pos[0] = x, pos[1] = y, orientation = 0 horizontale, 1 verticale
+
+	// Vérifier si le domino est bien dans le plateau
+		// Vérifier que chaque pièce est bien inscrite dans le plateau
+		// TODO
+	// Vérifier qu'il n'est pas sur un autre domino
+		// Vérifier que chaque pièce se trouve potentiellement sur un endroit vide
+
 	if (d.getPosition()[0][0] >= 0 && d.getPosition()[0][0] <= taille
 		&& d.getPosition()[0][1] >= 0 &&  d.getPosition()[0][1] <= taille) {
 		  if(d.getPosition()[1][0] >= 0 && d.getPosition()[1][0] <= taille

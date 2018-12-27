@@ -32,11 +32,20 @@ public class Domino {
 		return this.piece1.getValeur();
 	}
 
+	public Piece getPremierPiece(){
+		return this.piece1;
+	}
+
 	/**
 	* @return valeur deuxième coté du domino
 	*/
 	public int getValeurDeuxiemeCote(){
 		return this.piece2.getValeur();
+	}
+
+
+	public Piece getDeuxiemePiece(){
+		return this.piece2;
 	}
 
 	/**

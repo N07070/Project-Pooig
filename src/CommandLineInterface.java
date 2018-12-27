@@ -7,9 +7,11 @@ public class CommandLineInterface {
 
 	public CommandLineInterface(){
 		Scanner scan = new Scanner(System.in);
+
 		commencerLeJeu(scan);
 
 		while (continueLeJeu) {
+			System.out.println();
 			System.out.print(">> ");
 			String entreeUtilisateur = scan.nextLine();
 			if (verifierEntreeUtilisateur(entreeUtilisateur)) {
@@ -19,8 +21,9 @@ public class CommandLineInterface {
 						quitterLeJeu();
 						break;
 					case "aide":
+						aide();
 						break;
-					case "joueur":
+					case "jouer":
 						jouer();
 						break;
 					default:
@@ -45,13 +48,13 @@ public class CommandLineInterface {
 		int tailleDuPlateau = 0;
 		int nbrJoueurs = 0;
 
-		while (tailleDuPlateau < 10 && tailleDuPlateau > 100) {
-			System.out.println(">> Le plateau doit faire quel taille ? ( Entre 10 et 100 )");
+		while (tailleDuPlateau < 5 || tailleDuPlateau > 100) {
+			System.out.println(">> Le plateau doit faire quel taille ? ( Entre 5 et 100 )");
 			System.out.print(">> ");
 			tailleDuPlateau = scan.nextInt();
 		}
 
-		while (nbrJoueurs < 2 && nbrJoueurs > 4) {
+		while (nbrJoueurs < 2 || nbrJoueurs > 4) {
 			System.out.println(">> Combien de joueurs ? ( 2 à 4)");
 			System.out.print(">> ");
 			nbrJoueurs = scan.nextInt();
@@ -76,6 +79,8 @@ public class CommandLineInterface {
 		// Montrer le plateau
 		afficherLePlateau();
 		// Montrer au joueur ses dominos
+		System.out.println();
+		System.out.println(">> Main courrante du joueur : ");
 		afficherLaMainDuJoueur(joueurCourant);
 		// Demander au joueur d'un placer un
 		// joueurCourant.placerUnDomino();
@@ -105,15 +110,41 @@ public class CommandLineInterface {
 	}
 
 	public void afficherLePlateau(){
+		// La taille du plateau n'a pas vocation à évoluer durant la partie
+		String[][] plateau = new String[this.jeuEnCours.getPlateau().getTaille()][this.jeuEnCours.getPlateau().getTaille()];
+
 		if (this.jeuEnCours.getPlateau().isEmpty()){
-			for (int i = 0; i < this.jeuEnCours.getPlateau().getTaille(); i++ ) {
-				for (int j = 0 ; j < this.jeuEnCours.getPlateau().getTaille() ; j ++  ) {
-					// Bordure du plateau
-					if (i == 0 || i == this.jeuEnCours.getPlateau().getTaille()  - 1) {
-						System.out.println("bordure");
-					}
+			// Comme le plateau est un carré, on se fait pas chier
+			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+					plateau[x][y] = "[ ]";
 				}
 			}
+
+			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+					System.out.print(plateau[x][y]);
+				}
+				System.out.println();
+			}
+
+
+		} else {
+			ArrayList<Domino> dominoSurLePlateau = this.jeuEnCours.getPlateau().getDominos();
+			for (Domino d : dominoSurLePlateau ) {
+				// Pour chaque domino, on récupère la position de la pièce 1 et 2, que l'on place
+				// à la positio i,j respective
+				plateau[d.getPremierPiece().getX()][d.getPremierPiece().getY()] = Integer.toString(d.getPremierPiece().getValeur());
+			}
 		}
+	}
+
+
+	public void placerUnDomino(){
+		System.out.println(">> Quel domino voullez-vous placer ?");
+
+		System.out.println(">> Où voulez-vous le placer ?");
+
+		System.out.println(">> Dans quel position ?");
 	}
 }

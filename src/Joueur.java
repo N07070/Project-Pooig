@@ -109,4 +109,8 @@ class Joueur {
 	public int getIdJoueur(){
 		return this.idJoueur;
 	}
+
+	public void placerUnDomino(int idDominoAPlacer ){
+
+	}
 }
