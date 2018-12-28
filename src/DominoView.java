@@ -28,6 +28,15 @@ public class DominoView extends JFrame {
 		containerDomino.add(panelDuJeu);
 		containerDomino.add(panelDesOptions);
 
+		// On crée les boutons pour le panel des options
+		JButton jouer = new JButton("Jouer");
+		JButton aide = new JButton("Aide");
+		JButton quitter = new JButton("Quitter");
+		panelDesOptions.add(jouer);
+		panelDesOptions.add(aide);
+		panelDesOptions.add(quitter);
+
+
 		// Couleur par défault avant que l'on fasse un choix.
 		panelDuJeu.setBackground(Color.black);
 		panelDesOptions.setBackground(Color.cyan);

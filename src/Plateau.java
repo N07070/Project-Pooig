@@ -57,8 +57,8 @@ public class Plateau {
 	}
 
 	// Cette méthode ajoute le domino joué sur le plateau
-	public void addDomino(Domino domJoue){
-		if(positionEstBonne(domJoue)){
+	public void addDomino(Domino domJoue, int[] pos, int orientation){
+		if(positionEstBonne(domJoue, pos, orientation)){
 		  dominos.add(domJoue);
 		}
 	}
