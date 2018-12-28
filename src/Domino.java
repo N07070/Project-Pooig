@@ -4,7 +4,7 @@ public class Domino {
 	* Domino : implementation du pion de jeu
 	* @param piece1 la premier pièce, au pièce gauche
 	* @param piece2 la deuxième pièce, au pièce droite
-	* @param orientation l'orientation de la pièce. 0 pour horizontale, 1 pour verticale
+	* @param orientation l'orientation de la pièce.Nord -> 0, Est-> 1, Sud -> 2, Ouest-> 3
 	* @author Nelson P
 	*/
 
