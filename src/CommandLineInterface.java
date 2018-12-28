@@ -12,7 +12,7 @@ public class CommandLineInterface {
 
 		while (continueLeJeu) {
 			System.out.println();
-			System.out.print(">> ");
+			System.out.println(">> ");
 			String entreeUtilisateur = scan.nextLine();
 			if (verifierEntreeUtilisateur(entreeUtilisateur)) {
 				// Déroulement de la partie
@@ -24,7 +24,7 @@ public class CommandLineInterface {
 						aide();
 						break;
 					case "jouer":
-						jouer();
+						jouer(scan);
 						break;
 					default:
 						break;
@@ -63,30 +63,27 @@ public class CommandLineInterface {
 		this.jeuEnCours = new Jouer(tailleDuPlateau, nbrJoueurs);
 	}
 
-	public void jouer(){
-		// Si il joueur n'a plus de Domino, on arrête le jeu.
-		for ( Joueur j : jeuEnCours.getJoueurListe() ) {
-			if (j.getMainDuJoueur().size() == 0) {
-				// Fin du jeu.
-				finDuJeu();
-			}
+	public void jouer(Scanner scan){
+		while (jeuEnCours.getJoueurX(jeuEnCours.getTourDuJoueurX()).getMainDuJoueur().size() != 0 ){
+			String ANSI_CLS = "\u001b[2J";
+			String ANSI_HOME = "\u001b[H";
+			System.out.print(ANSI_CLS + ANSI_HOME);
+			System.out.flush();
+			// Récuperer le tour du joueur courant
+			Joueur joueurCourant = jeuEnCours.getJoueurX(jeuEnCours.getTourDuJoueurX());
+			// Faire jouer le joueur
+			System.out.println(">> C'est au tour du joueur " + joueurCourant.getIdJoueur());
+			// Montrer le plateau
+			afficherLePlateau();
+			// Montrer au joueur ses dominos
+			System.out.println();
+			System.out.println(">> Main courrante du joueur : ");
+			afficherLaMainDuJoueur(joueurCourant);
+			// Demander au joueur d'un placer un
+			placerUnDomino(scan, joueurCourant);
+			// On passe au prochain tour
+			jeuEnCours.passerAuProchainTour();
 		}
-
-		// Récuperer le tour du joueur courant
-		Joueur joueurCourant = jeuEnCours.getJoueurX(jeuEnCours.getTourDuJoueurX());
-		// Faire jouer le joueur
-		System.out.println(">> C'est au tour du joueur " + joueurCourant.getIdJoueur());
-		// Montrer le plateau
-		afficherLePlateau();
-		// Montrer au joueur ses dominos
-		System.out.println();
-		System.out.println(">> Main courrante du joueur : ");
-		afficherLaMainDuJoueur(joueurCourant);
-		// Demander au joueur d'un placer un
-		// joueurCourant.placerUnDomino();
-		// On passe au prochain tour
-		jeuEnCours.passerAuProchainTour();
-
 	}
 
 	public void quitterLeJeu(){
@@ -134,17 +131,71 @@ public class CommandLineInterface {
 			for (Domino d : dominoSurLePlateau ) {
 				// Pour chaque domino, on récupère la position de la pièce 1 et 2, que l'on place
 				// à la positio i,j respective
-				plateau[d.getPremierPiece().getX()][d.getPremierPiece().getY()] = Integer.toString(d.getPremierPiece().getValeur());
+				plateau[d.getPremierPiece().getX()][d.getPremierPiece().getY()] = "[" + Integer.toString(d.getPremierPiece().getValeur()) + "]";
+				plateau[d.getDeuxiemePiece().getX()][d.getDeuxiemePiece().getY()] = "[" + Integer.toString(d.getDeuxiemePiece().getValeur()) + "]";
+			}
+
+			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+					if (plateau[x][y] == null) {
+						plateau[x][y] = "[ ]";
+					}
+				}
+			}
+
+			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+					System.out.print(plateau[x][y]);
+				}
+				System.out.println();
 			}
 		}
 	}
 
 
-	public void placerUnDomino(){
-		System.out.println(">> Quel domino voullez-vous placer ?");
+	public void placerUnDomino(Scanner scan, Joueur joueurCourant){
+		System.out.println();
+		System.out.println(">> Quel domino voulez-vous placer ?");
+		System.out.print(">> ");
+		// On récupère le Domino X
+		int idDominoAPlacer = scan.nextInt();
+		while (idDominoAPlacer < 0 || idDominoAPlacer > joueurCourant.getNombrePiecesRestantes()){
+			System.out.println();
+			System.out.println(">> Quel domino voulez-vous placer ?");
+			System.out.print(">> ");
+			idDominoAPlacer = scan.nextInt();
+		}
 
+		int[] localisationDeLaPremierPieceDuDomino = new int[2];
 		System.out.println(">> Où voulez-vous le placer ?");
+		System.out.print(" >> En X :");
+		localisationDeLaPremierPieceDuDomino[0] = scan.nextInt();
+		System.out.print(" >> En Y :");
+		localisationDeLaPremierPieceDuDomino[1] = scan.nextInt();
 
-		System.out.println(">> Dans quel position ?");
+		while (localisationDeLaPremierPieceDuDomino[0] < 0 || localisationDeLaPremierPieceDuDomino[0] > jeuEnCours.getPlateau().getTaille()
+			|| localisationDeLaPremierPieceDuDomino[1] < 0 || localisationDeLaPremierPieceDuDomino[1] > jeuEnCours.getPlateau().getTaille()){
+			System.out.println(">> Où voulez-vous le placer ?");
+			System.out.print(" >> En X : ");
+			localisationDeLaPremierPieceDuDomino[0] = scan.nextInt();
+			System.out.print(" >> En Y : ");
+			localisationDeLaPremierPieceDuDomino[1] = scan.nextInt();
+		}
+
+		System.out.println(">> Dans quel position ?\n >> 0 : Nord\n >> 1 : Est\n >> 2 : Sud\n >> 3 : Ouest");
+		System.out.print(" >> ");
+		int orientationDuDomino = scan.nextInt();
+		while (orientationDuDomino < 0 || orientationDuDomino > 3){
+			System.out.println(">> Dans quel position ?\n >> 0 : Nord\n >> 1 : Est\n >> 2 : Sud\n >> 3 : Ouest");
+			System.out.print(" >> ");
+			orientationDuDomino = scan.nextInt();
+		}
+
+		if (this.jeuEnCours.getPlateau().addDomino(joueurCourant.getDominoNumero(idDominoAPlacer), localisationDeLaPremierPieceDuDomino, orientationDuDomino)) {
+			afficherLePlateau();
+		} else {
+			System.out.println(">> La position du Domino est illégal... Veuiliez recommencer.");
+			placerUnDomino(scan, joueurCourant);
+		}
 	}
 }

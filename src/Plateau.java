@@ -34,33 +34,88 @@ public class Plateau {
 	}
 
 	// Fonction qui vérifie que le domino est bien dans le plateau.
-	public boolean positionEstBonne(Domino d, int[] pos, int orientation){
-	// Pour rappel : pos[0] = x, pos[1] = y, orientation = 0 horizontale, 1 verticale
+	public boolean positionEstBonne(Domino d, int[] pos, int orientation) {
+		// Pour rappel : pos[0] = x, pos[1] = y,
+		// Orientation  Nord -> 0, Est-> 1, Sud -> 2, Ouest-> 3
+		int[] posP2 = new int[2];
+		boolean orientationOK = false;
 
-	// Vérifier si le domino est bien dans le plateau
-		// Vérifier que chaque pièce est bien inscrite dans le plateau
-		// TODO
-	// Vérifier qu'il n'est pas sur un autre domino
-		// Vérifier que chaque pièce se trouve potentiellement sur un endroit vide
-
-	if (d.getPosition()[0][0] >= 0 && d.getPosition()[0][0] <= taille
-		&& d.getPosition()[0][1] >= 0 &&  d.getPosition()[0][1] <= taille) {
-		  if(d.getPosition()[1][0] >= 0 && d.getPosition()[1][0] <= taille
-		  && d.getPosition()[1][1] >= 0 && d.getPosition()[1][1] <= taille){
-		    if((d.getPosition()[1][0] == d.getPosition()[0][0] -1 || d.getPosition()[1][0] == d.getPosition()[0][0] +1)
-		    && (d.getPosition()[1][1] == d.getPosition()[0][1] -1 || d.getPosition()[1][1] == d.getPosition()[0][1] +1)){
-		      return true;
-		    }
-		  }
+		// On vérifie que la première pièce du domino est bien inscrite dans le plateau
+		// C'est à dire que la position donnée par la joueur est bonne
+		if (pos[0] >= 0 && pos[0] < this.taille
+			&& pos[1] >= 0 && pos[1] < this.taille) {
+			// On vérifie ensuite en fonction de l'orientation
+			switch(orientation) {
+				case 0: // Nord y - 1
+					if (pos[0] >= 0 && pos[0] < this.taille
+						&& pos[1] - 1 >= 0 && pos[1] - 1 < this.taille) {
+						orientationOK = true;
+						posP2[0] = pos[0];
+						posP2[1] = pos[1] - 1;
+					}
+					break;
+				case 1: // Est x+1
+					if (pos[0] + 1 >= 0 && pos[0] + 1 < this.taille
+						&& pos[1]>= 0 && pos[1]< this.taille) {
+						orientationOK = true;
+						posP2[0] = pos[0] + 1;
+						posP2[1] = pos[1];
+					}
+					break;
+				case 2: // Sud y + 1
+					if (pos[0] >= 0 && pos[0] < this.taille
+						&& pos[1] + 1 >= 0 && pos[1] + 1 < this.taille) {
+						orientationOK = true;
+						posP2[0] = pos[0];
+						posP2[1] = pos[1] + 1;
+					}
+					break;
+				case 3: // Ouest x - 1
+					if (pos[0] - 1 >= 0 && pos[0] - 1 < this.taille
+						&& pos[1] >= 0 && pos[1] < this.taille) {
+						orientationOK = true;
+						posP2[0] = pos[0] - 1;
+						posP2[1] = pos[1];
+					}
+					break;
+				default:
+					return false;
+			}
+		} else {
+			return false;
 		}
-	return false;
+
+		// On vérifie pour les deux pièces du domino
+		// qu'elles ne sont pas sur une autre pièce.
+		if (orientationOK) {
+			for (Domino dominoSurLePlateau : dominos ) {
+				if (dominoSurLePlateau.getPremierPiece().getX() == pos[0]
+				|| dominoSurLePlateau.getPremierPiece().getY() == pos[1]
+				|| dominoSurLePlateau.getDeuxiemePiece().getX() == posP2[0]
+				|| dominoSurLePlateau.getDeuxiemePiece().getY() == posP2[1]) {
+					return false;
+				}
+			}
+			return  true;
+		} else {
+			return false;
+		}
+
 	}
 
 	// Cette méthode ajoute le domino joué sur le plateau
+<<<<<<< HEAD
 	public void addDomino(Domino domJoue, int[] pos, int orientation){
 		if(positionEstBonne(domJoue, pos, orientation)){
+=======
+	public boolean addDomino(Domino domJoue, int[] position, int orientation){
+		if(positionEstBonne(domJoue,position,orientation)){
+>>>>>>> 8f2d843149ab2c551df91a1e36a95ebc519c6d18
 		  dominos.add(domJoue);
-		}
+		  return true;
+	  } else {
+		  return false;
+	  }
 	}
 
 	/**

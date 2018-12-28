@@ -18,3 +18,4 @@ Au niveau des joeurs, il faut définir :
 - Comment gerer l'orientation d'une pièce de Domino ?
 	- En prenant la pièce 1 comme le centre, on à 4 position possibles pour la pièce 2
 		- Nord, Est, Sud, Ouest
+		- 0,    1,    2,   3
