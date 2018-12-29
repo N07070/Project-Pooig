@@ -2,7 +2,7 @@ public class Piece {
 
 	/**
 	* class Piece qui contient la valeur de la piece et sa position
-	* @author Nelson P et Mehdi X
+	* @author Nelson P et Mehdi B
 	* @param valeur une valeur entre 0 et 6
 	* @param position une array contenant la position x en position 0 et y en position 1
 	*

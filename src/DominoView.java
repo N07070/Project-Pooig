@@ -32,10 +32,24 @@ public class DominoView extends JFrame {
 		JButton jouer = new JButton("Jouer");
 		JButton aide = new JButton("Aide");
 		JButton quitter = new JButton("Quitter");
+		jouer.addActionListener(event ->
+		{
+
+		}
+		);
+		aide.addActionListener(event ->
+		{
+
+		}
+		);
+		quitter.addActionListener(event ->
+		{
+
+		}
+		);
 		panelDesOptions.add(jouer);
 		panelDesOptions.add(aide);
 		panelDesOptions.add(quitter);
-
 
 		// Couleur par défault avant que l'on fasse un choix.
 		panelDuJeu.setBackground(Color.black);
