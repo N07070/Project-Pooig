@@ -26,13 +26,13 @@ public class DominoView extends JFrame {
 		JPanel panelDuJeu = new JPanel();
 		JPanel panelDesOptions = new JPanel();
 		containerDomino.add(panelDuJeu);
-		containerDomino.add(panelDesOptions);
+		containerDomino.add(panelDesOptions, BorderLayout.EAST);
 
 		// On crée les boutons pour le panel des options
 		JButton jouer = new JButton("Jouer");
 		JButton aide = new JButton("Aide");
 		JButton quitter = new JButton("Quitter");
-		jouer.addActionListener(event ->
+		/* jouer.addActionListener(event ->
 		{
 
 		}
@@ -47,6 +47,7 @@ public class DominoView extends JFrame {
 
 		}
 		);
+		*/
 		panelDesOptions.add(jouer);
 		panelDesOptions.add(aide);
 		panelDesOptions.add(quitter);
