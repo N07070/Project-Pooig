@@ -113,6 +113,6 @@ public class Jouer {
 
 	public void placerUnDomino(Domino pieceDuJoueur, int[] position){
 	  	getTourDuJoueurX();
-		this.tableDeJeu.addDomino(pieceDuJoueur);
+			this.tableDeJeu.addDomino(pieceDuJoueur);
 	}
 }
