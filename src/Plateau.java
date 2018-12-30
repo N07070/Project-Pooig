@@ -106,8 +106,9 @@ public class Plateau {
 	// Cette méthode ajoute le domino joué sur le plateau
 	public boolean addDomino(Domino domJoue, int[] pos, int orientation){
 		if(positionEstBonne(domJoue, pos, orientation)){
-		  dominos.add(domJoue);
-		  return true;
+			domJoue.setPosition(pos, orientation);
+		  	dominos.add(domJoue);
+		  	return true;
 	  } else {
 		  return false;
 	  }

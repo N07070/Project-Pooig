@@ -6,7 +6,7 @@ public class Jouer {
 	/**
 	* classe Jouer : Met en place la logique du jeu
 
-	* @author Mehdi
+	* @author Mehdi Nelson
 
 	* @param nbJoueurs le nombre de joueur dans la partie
 	* @param joueurListe une ArrayList qui contient les joueurs
@@ -111,8 +111,8 @@ public class Jouer {
 		return lesDominos;
 	}
 
-	public void placerUnDomino(Domino pieceDuJoueur, int[] position){
-	  	getTourDuJoueurX();
-			this.tableDeJeu.addDomino(pieceDuJoueur);
-	}
+	// public void placerUnDomino(Domino pieceDuJoueur, int[] position){
+	//   	getTourDuJoueurX();
+	// 		this.tableDeJeu.addDomino(pieceDuJoueur);
+	// }
 }
