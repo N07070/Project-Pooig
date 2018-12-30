@@ -62,7 +62,6 @@ public class DominoView extends JFrame {
 		// faire le lien entre les deux panels
 		DominoControleur panelControl = new DominoControleur(this);
 
-
 		// On fait la mise à jour du panel
 		miseAJour();
 
