@@ -25,8 +25,10 @@ public class DominoView extends JFrame {
 		// On creer les deux panels;
 		JPanel panelDuJeu = new JPanel();
 		JPanel panelDesOptions = new JPanel();
+		JPanel panelDeLaMain = new JPanel();
 		containerDomino.add(panelDuJeu);
 		containerDomino.add(panelDesOptions, BorderLayout.EAST);
+		containerDomino.add(panelDeLaMain, BorderLayout.SOUTH);
 
 		// On crée les boutons pour le panel des options
 		JButton jouer = new JButton("Jouer");
