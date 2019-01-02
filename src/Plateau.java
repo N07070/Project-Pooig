@@ -39,11 +39,9 @@ public class Plateau {
 		// Orientation  Nord -> 0, Est-> 1, Sud -> 2, Ouest-> 3
 		int[] posP2 = new int[2];
 		boolean orientationOK = false;
-		boolean adjacenceOK = false;
 
 		// On vérifie que la première pièce du domino est bien inscrite dans le plateau
-		// C'est à dire que la position donnée par la joueur est bonne
-		// Et on vérifie que les valeurs cote à cote sont similaires #adjacenceOK dans le même switch
+		// C'est à dire que la position donnée par le joueur est bonne
 
 		if (pos[0] >= 0 && pos[0] < this.taille
 			&& pos[1] >= 0 && pos[1] < this.taille) {
@@ -56,9 +54,6 @@ public class Plateau {
 						posP2[0] = pos[0];
 						posP2[1] = pos[1] - 1;
 					}
-					if (dominos.get(pos[1]-1).getValeurDeuxiemeCote() == d.getValeurPremierCote()){
-						adjacenceOK = true;
-					}
 					break;
 				case 1: // Est x+1
 					if (pos[0] + 1 >= 0 && pos[0] + 1 < this.taille
@@ -66,9 +61,6 @@ public class Plateau {
 						orientationOK = true;
 						posP2[0] = pos[0] + 1;
 						posP2[1] = pos[1];
-					}
-					if (dominos.get(pos[0]+1).getValeurDeuxiemeCote() == d.getValeurPremierCote()){
-						adjacenceOK = true;
 					}
 					break;
 				case 2: // Sud y + 1
@@ -78,9 +70,6 @@ public class Plateau {
 						posP2[0] = pos[0];
 						posP2[1] = pos[1] + 1;
 					}
-					if (dominos.get(pos[1]+1).getValeurDeuxiemeCote() == d.getValeurPremierCote()){
-						adjacenceOK = true;
-					}
 					break;
 				case 3: // Ouest x - 1
 					if (pos[0] - 1 >= 0 && pos[0] - 1 < this.taille
@@ -89,20 +78,17 @@ public class Plateau {
 						posP2[0] = pos[0] - 1;
 						posP2[1] = pos[1];
 					}
-					if (dominos.get(pos[0]-1).getValeurDeuxiemeCote() == d.getValeurPremierCote()){
-						adjacenceOK = true;
-					}
 					break;
 				default:
 					return false;
+				}
+			} else {
+				return false;
 			}
-		} else {
-			return false;
-		}
 
 		// On vérifie pour les deux pièces du domino
 		// qu'elles ne sont pas sur une autre pièce.
-		if (orientationOK && adjacenceOK) {
+		if (orientationOK) {
 			for (Domino dominoSurLePlateau : dominos ) {
 				if (dominoSurLePlateau.getPremierPiece().getX() == pos[0]
 				|| dominoSurLePlateau.getPremierPiece().getY() == pos[1]
@@ -115,6 +101,20 @@ public class Plateau {
 		} else {
 			return false;
 		}
+	}
+
+	public boolean estAdjacent(Domino d, int orientation){
+		// On vérifie d'abord que la valeur de la dernière pièce présente sur le plateau et celle de la pièce à poser est la même
+		int k = dominos.size();
+		if (dominos.get(k).getValeurDeuxiemeCote() == d.getValeurPremierCote()){
+			return true;
+		}
+		/*
+
+		A FINIR Pour bien vérifier l'adjacence
+
+		*/
+		return false;
 	}
 	// Cette méthode ajoute le domino joué sur le plateau
 	public boolean addDomino(Domino domJoue, int[] pos, int orientation){
