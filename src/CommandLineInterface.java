@@ -9,10 +9,10 @@ public class CommandLineInterface {
 		Scanner scan = new Scanner(System.in);
 
 		commencerLeJeu(scan);
+        aide();
 
 		while (continueLeJeu) {
-			System.out.println();
-			System.out.println(">> ");
+			System.out.print(">> ");
 			String entreeUtilisateur = scan.nextLine();
 			if (verifierEntreeUtilisateur(entreeUtilisateur)) {
 				// Déroulement de la partie
@@ -31,11 +31,12 @@ public class CommandLineInterface {
 				}
 			}
 		}
+
+        finDuJeu();
 	}
 
 	public boolean verifierEntreeUtilisateur(String entreeUtilisateur){
 		if (entreeUtilisateur.length() < 1){
-			aide();
 			return false;
 		} else {
 			return true;
@@ -65,10 +66,10 @@ public class CommandLineInterface {
 
 	public void jouer(Scanner scan){
 		while (jeuEnCours.getJoueurX(jeuEnCours.getTourDuJoueurX()).getMainDuJoueur().size() != 0 ){
-			String ANSI_CLS = "\u001b[2J";
-			String ANSI_HOME = "\u001b[H";
-			System.out.print(ANSI_CLS + ANSI_HOME);
-			System.out.flush();
+			// String ANSI_CLS = "\u001b[2J";
+			// String ANSI_HOME = "\u001b[H";
+			// System.out.print(ANSI_CLS + ANSI_HOME);
+			// System.out.flush();
 			// Récuperer le tour du joueur courant
 			Joueur joueurCourant = jeuEnCours.getJoueurX(jeuEnCours.getTourDuJoueurX());
 			// Faire jouer le joueur
@@ -84,6 +85,8 @@ public class CommandLineInterface {
 			// On passe au prochain tour
 			jeuEnCours.passerAuProchainTour();
 		}
+
+        continueLeJeu = false;
 	}
 
 	public void quitterLeJeu(){
@@ -101,25 +104,38 @@ public class CommandLineInterface {
 	}
 
 	public void afficherLaMainDuJoueur(Joueur j){
-		for(Domino d : j.getMainDuJoueur()){
-			System.out.print("["+ d.getValeurPremierCote() +"|"+ d.getValeurDeuxiemeCote() +"], ");
-		}
+        int i = 0;
+		for( Domino d : j.getMainDuJoueur()){
+			System.out.print(Integer.toString(i) + ") ["+ d.getValeurPremierCote() +"|"+ d.getValeurDeuxiemeCote() +"], ");
+            i++;
+            if( i % 5 == 0 ){
+                System.out.println();
+            }
+        }
 	}
 
 	public void afficherLePlateau(){
 		// La taille du plateau n'a pas vocation à évoluer durant la partie
-		String[][] plateau = new String[this.jeuEnCours.getPlateau().getTaille()][this.jeuEnCours.getPlateau().getTaille()];
+		String[][] plateau = new String[this.jeuEnCours.getPlateau().getTaille() + 1][this.jeuEnCours.getPlateau().getTaille() + 1];
 
 		if (this.jeuEnCours.getPlateau().isEmpty()){
 			// Comme le plateau est un carré, on se fait pas chier
-			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
-				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
-					plateau[x][y] = "[ ]";
+			for (int x = 0; x <= this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y <= this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+                    if (y == 0 && x == 0) {
+                        plateau[x][y] = " x\\y ";
+                    } else if (x == 0) {
+                        plateau[x][y] = " "+ y +" ";
+                    } else if (y == 0){
+                        plateau[x][y] = " "+ x +" ";
+                    } else {
+                        plateau[x][y] = "[ ]";
+                    }
 				}
 			}
 
-			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
-				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+			for (int x = 0; x <= this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y <= this.jeuEnCours.getPlateau().getTaille(); y++ ) {
 					System.out.print(plateau[x][y]);
 				}
 				System.out.println();
@@ -135,16 +151,20 @@ public class CommandLineInterface {
 				plateau[d.getDeuxiemePiece().getX()][d.getDeuxiemePiece().getY()] = "[" + Integer.toString(d.getDeuxiemePiece().getValeur()) + "]";
 			}
 
-			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
-				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
-					if (plateau[x][y] == null) {
-						plateau[x][y] = "[ ]";
+			for (int x = 0; x <= this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y <= this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+                    if (y == 0) {
+                        plateau[x][y] = " "+ x +" ";
+                    } else if (x == 0) {
+                        plateau[x][y] = " "+ y +" ";
+                    } else if (plateau[x][y] == null) {
+						plateau[x][y] = "[ ] ";
 					}
 				}
 			}
 
-			for (int x = 0; x < this.jeuEnCours.getPlateau().getTaille(); x++ ) {
-				for (int y = 0; y < this.jeuEnCours.getPlateau().getTaille(); y++ ) {
+			for (int x = 0; x <= this.jeuEnCours.getPlateau().getTaille(); x++ ) {
+				for (int y = 0; y <= this.jeuEnCours.getPlateau().getTaille(); y++ ) {
 					System.out.print(plateau[x][y]);
 				}
 				System.out.println();
@@ -194,7 +214,7 @@ public class CommandLineInterface {
 		if (this.jeuEnCours.getPlateau().addDomino(joueurCourant.getDominoNumero(idDominoAPlacer), localisationDeLaPremierPieceDuDomino, orientationDuDomino)) {
 			afficherLePlateau();
 		} else {
-			System.out.println(">> La position du Domino est illégal... Veuiliez recommencer.");
+			System.out.println(">> La position du Domino est illégal... Veulliez recommencer.");
 			placerUnDomino(scan, joueurCourant);
 		}
 	}

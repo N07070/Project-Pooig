@@ -84,16 +84,16 @@ public class Domino {
 
 		switch(orientation){
 			case 0:
-				this.piece2.setPosition(position[0], position[1] - 1);
+				this.piece2.setPosition(position[0] - 1, position[1]);
 				break;
 			case 1:
-				this.piece2.setPosition(position[0] + 1, position[1]);
-				break;
-			case 2:
 				this.piece2.setPosition(position[0], position[1] + 1);
 				break;
+			case 2:
+				this.piece2.setPosition(position[0] + 1 , position[1]);
+				break;
 			case 3:
-				this.piece2.setPosition(position[0] - 1, position[1]);
+				this.piece2.setPosition(position[0], position[1] - 1);
 				break;
 		}
 
