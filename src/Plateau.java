@@ -103,28 +103,42 @@ public class Plateau {
 		}
 	}
 
-	public boolean estAdjacent(Domino d, int orientation){
-		// On vérifie d'abord que la valeur de la dernière pièce présente sur le plateau et celle de la pièce à poser est la même
+	/* Cette fonction vérifie que la valeur de la première pièce
+	présente sur le plateau et celle de la pièce à poser est
+	la même (Si l'utilisateur décide de la mettre au début) */
+	public boolean estAdjacentDébut(Domino d, int orientation){
+		if (dominos.get(0).getValeurPremierCote() == d.getValeurDeuxiemeCote()){
+			return true;
+		}
+		return false;
+	}
+
+	/* Cette fonction vérifie que la valeur de la dernière pièce
+	 présente sur le plateau et celle de la pièce à poser est
+	 la même (Si l'utilisateur décide de la mettre à la fin) */
+	public boolean estAdjacentFin(Domino d, int orientation){
 		int k = dominos.size();
 		if (dominos.get(k).getValeurDeuxiemeCote() == d.getValeurPremierCote()){
 			return true;
 		}
-		/*
-
-		A FINIR Pour bien vérifier l'adjacence
-
-		*/
 		return false;
 	}
+
 	// Cette méthode ajoute le domino joué sur le plateau
+
 	public boolean addDomino(Domino domJoue, int[] pos, int orientation){
 		if(positionEstBonne(domJoue, pos, orientation)){
 			domJoue.setPosition(pos, orientation);
-		  	dominos.add(domJoue);
+			if(estAdjacentDébut(domJoue, orientation)){
+		  	dominos.add(0,domJoue);
 		  	return true;
-	  } else {
-		  return false;
+			}
+			if(estAdjacentFin(domJoue, orientation)){
+				dominos.add(domJoue);
+				return true;
+			}
 	  }
+		return false;
 	}
 
 	/**
